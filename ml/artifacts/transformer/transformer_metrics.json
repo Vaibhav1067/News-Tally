@@ -1,0 +1,429 @@
+{
+  "backbone": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "device": "cpu",
+  "seed": 42,
+  "classes": [
+    "FALSE",
+    "MISLEADING",
+    "OUTDATED"
+  ],
+  "n_train": 2591,
+  "n_val": 519,
+  "n_test": 519,
+  "run_at": "2026-11-04T05:51:36+00:00",
+  "args": {
+    "mode": "both",
+    "epochs": 3,
+    "batch_size": 16,
+    "lr": 3e-05,
+    "max_len": 96,
+    "patience": 1,
+    "no_save": false,
+    "seed": 42
+  },
+  "frozen_embeddings_lr": {
+    "seconds": 24.7,
+    "validation": {
+      "accuracy": 0.5337,
+      "precision_macro": 0.5159,
+      "recall_macro": 0.5182,
+      "f1_macro": 0.5136,
+      "f1_weighted": 0.5394,
+      "per_class": {
+        "FALSE": {
+          "precision": 0.6238,
+          "recall": 0.5982,
+          "f1": 0.6107,
+          "support": 219
+        },
+        "MISLEADING": {
+          "precision": 0.5833,
+          "recall": 0.5078,
+          "f1": 0.5429,
+          "support": 193
+        },
+        "OUTDATED": {
+          "precision": 0.3404,
+          "recall": 0.4486,
+          "f1": 0.3871,
+          "support": 107
+        }
+      },
+      "confusion_matrix": {
+        "labels": [
+          "FALSE",
+          "MISLEADING",
+          "OUTDATED"
+        ],
+        "matrix": [
+          [
+            131,
+            34,
+            54
+          ],
+          [
+            56,
+            98,
+            39
+          ],
+          [
+            23,
+            36,
+            48
+          ]
+        ]
+      },
+      "n": 519,
+      "calibration": {
+        "ece": 0.0305,
+        "bins": [
+          {
+            "bin": "0.3-0.4",
+            "count": 21,
+            "accuracy": 0.2857,
+            "avg_confidence": 0.3668
+          },
+          {
+            "bin": "0.4-0.5",
+            "count": 167,
+            "accuracy": 0.4491,
+            "avg_confidence": 0.4546
+          },
+          {
+            "bin": "0.5-0.6",
+            "count": 151,
+            "accuracy": 0.5099,
+            "avg_confidence": 0.5478
+          },
+          {
+            "bin": "0.6-0.7",
+            "count": 103,
+            "accuracy": 0.6117,
+            "avg_confidence": 0.6483
+          },
+          {
+            "bin": "0.7-0.8",
+            "count": 50,
+            "accuracy": 0.72,
+            "avg_confidence": 0.7436
+          },
+          {
+            "bin": "0.8-0.9",
+            "count": 26,
+            "accuracy": 0.7692,
+            "avg_confidence": 0.8319
+          },
+          {
+            "bin": "0.9-1.0",
+            "count": 1,
+            "accuracy": 0.0,
+            "avg_confidence": 0.9213
+          }
+        ]
+      }
+    },
+    "test": {
+      "accuracy": 0.5279,
+      "precision_macro": 0.509,
+      "recall_macro": 0.5152,
+      "f1_macro": 0.5092,
+      "f1_weighted": 0.5307,
+      "per_class": {
+        "FALSE": {
+          "precision": 0.6204,
+          "recall": 0.6119,
+          "f1": 0.6161,
+          "support": 219
+        },
+        "MISLEADING": {
+          "precision": 0.5389,
+          "recall": 0.4663,
+          "f1": 0.5,
+          "support": 193
+        },
+        "OUTDATED": {
+          "precision": 0.3676,
+          "recall": 0.4673,
+          "f1": 0.4115,
+          "support": 107
+        }
+      },
+      "confusion_matrix": {
+        "labels": [
+          "FALSE",
+          "MISLEADING",
+          "OUTDATED"
+        ],
+        "matrix": [
+          [
+            134,
+            48,
+            37
+          ],
+          [
+            54,
+            90,
+            49
+          ],
+          [
+            28,
+            29,
+            50
+          ]
+        ]
+      },
+      "n": 519,
+      "calibration": {
+        "ece": 0.066,
+        "bins": [
+          {
+            "bin": "0.3-0.4",
+            "count": 20,
+            "accuracy": 0.25,
+            "avg_confidence": 0.3766
+          },
+          {
+            "bin": "0.4-0.5",
+            "count": 165,
+            "accuracy": 0.497,
+            "avg_confidence": 0.4555
+          },
+          {
+            "bin": "0.5-0.6",
+            "count": 146,
+            "accuracy": 0.5068,
+            "avg_confidence": 0.5479
+          },
+          {
+            "bin": "0.6-0.7",
+            "count": 108,
+            "accuracy": 0.5463,
+            "avg_confidence": 0.6459
+          },
+          {
+            "bin": "0.7-0.8",
+            "count": 54,
+            "accuracy": 0.6111,
+            "avg_confidence": 0.7431
+          },
+          {
+            "bin": "0.8-0.9",
+            "count": 23,
+            "accuracy": 0.8261,
+            "avg_confidence": 0.8357
+          },
+          {
+            "bin": "0.9-1.0",
+            "count": 3,
+            "accuracy": 0.6667,
+            "avg_confidence": 0.9286
+          }
+        ]
+      }
+    }
+  },
+  "finetune": {
+    "history": [
+      {
+        "epoch": 1,
+        "train_loss": 1.0299,
+        "val_f1_macro": 0.5661,
+        "val_accuracy": 0.5934
+      },
+      {
+        "epoch": 2,
+        "train_loss": 0.8597,
+        "val_f1_macro": 0.5898,
+        "val_accuracy": 0.6069
+      },
+      {
+        "epoch": 3,
+        "train_loss": 0.7356,
+        "val_f1_macro": 0.5872,
+        "val_accuracy": 0.605
+      }
+    ],
+    "best_epoch": 2,
+    "seconds": 527.2,
+    "validation": {
+      "accuracy": 0.6069,
+      "precision_macro": 0.5879,
+      "recall_macro": 0.5936,
+      "f1_macro": 0.5898,
+      "f1_weighted": 0.6096,
+      "per_class": {
+        "FALSE": {
+          "precision": 0.7059,
+          "recall": 0.6575,
+          "f1": 0.6809,
+          "support": 219
+        },
+        "MISLEADING": {
+          "precision": 0.5907,
+          "recall": 0.5907,
+          "f1": 0.5907,
+          "support": 193
+        },
+        "OUTDATED": {
+          "precision": 0.4672,
+          "recall": 0.5327,
+          "f1": 0.4978,
+          "support": 107
+        }
+      },
+      "confusion_matrix": {
+        "labels": [
+          "FALSE",
+          "MISLEADING",
+          "OUTDATED"
+        ],
+        "matrix": [
+          [
+            144,
+            42,
+            33
+          ],
+          [
+            47,
+            114,
+            32
+          ],
+          [
+            13,
+            37,
+            57
+          ]
+        ]
+      },
+      "n": 519,
+      "calibration": {
+        "ece": 0.0199,
+        "bins": [
+          {
+            "bin": "0.3-0.4",
+            "count": 2,
+            "accuracy": 0.5,
+            "avg_confidence": 0.3569
+          },
+          {
+            "bin": "0.4-0.5",
+            "count": 93,
+            "accuracy": 0.5054,
+            "avg_confidence": 0.4696
+          },
+          {
+            "bin": "0.5-0.6",
+            "count": 196,
+            "accuracy": 0.5765,
+            "avg_confidence": 0.553
+          },
+          {
+            "bin": "0.6-0.7",
+            "count": 172,
+            "accuracy": 0.6512,
+            "avg_confidence": 0.6531
+          },
+          {
+            "bin": "0.7-0.8",
+            "count": 56,
+            "accuracy": 0.75,
+            "avg_confidence": 0.7183
+          }
+        ]
+      }
+    },
+    "test": {
+      "accuracy": 0.5761,
+      "precision_macro": 0.5593,
+      "recall_macro": 0.5609,
+      "f1_macro": 0.56,
+      "f1_weighted": 0.5767,
+      "per_class": {
+        "FALSE": {
+          "precision": 0.6338,
+          "recall": 0.6164,
+          "f1": 0.625,
+          "support": 219
+        },
+        "MISLEADING": {
+          "precision": 0.5714,
+          "recall": 0.5803,
+          "f1": 0.5758,
+          "support": 193
+        },
+        "OUTDATED": {
+          "precision": 0.4727,
+          "recall": 0.486,
+          "f1": 0.4793,
+          "support": 107
+        }
+      },
+      "confusion_matrix": {
+        "labels": [
+          "FALSE",
+          "MISLEADING",
+          "OUTDATED"
+        ],
+        "matrix": [
+          [
+            135,
+            54,
+            30
+          ],
+          [
+            53,
+            112,
+            28
+          ],
+          [
+            25,
+            30,
+            52
+          ]
+        ]
+      },
+      "n": 519,
+      "calibration": {
+        "ece": 0.028,
+        "bins": [
+          {
+            "bin": "0.3-0.4",
+            "count": 7,
+            "accuracy": 0.0,
+            "avg_confidence": 0.3738
+          },
+          {
+            "bin": "0.4-0.5",
+            "count": 116,
+            "accuracy": 0.5086,
+            "avg_confidence": 0.4664
+          },
+          {
+            "bin": "0.5-0.6",
+            "count": 161,
+            "accuracy": 0.5155,
+            "avg_confidence": 0.5511
+          },
+          {
+            "bin": "0.6-0.7",
+            "count": 176,
+            "accuracy": 0.6477,
+            "avg_confidence": 0.6516
+          },
+          {
+            "bin": "0.7-0.8",
+            "count": 59,
+            "accuracy": 0.7288,
+            "avg_confidence": 0.7182
+          }
+        ]
+      }
+    },
+    "checkpoint": "C:\\Users\\vaibhav\\OneDrive\\Desktop\\NEWS\\news-tally\\ml\\artifacts\\transformer\\checkpoint"
+  },
+  "classical_reference": {
+    "model": "logistic_regression",
+    "validation_macro_f1": 0.5841,
+    "test_macro_f1": 0.527
+  }
+}

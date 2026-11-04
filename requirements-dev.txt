@@ -1,0 +1,13 @@
+# Everything for research, training and tests (on top of backend/requirements.txt)
+-r backend/requirements.txt
+transformers>=4.44
+shap>=0.45
+nltk>=3.8
+matplotlib>=3.8
+seaborn>=0.13
+jupyter
+nbformat
+nbconvert
+ipykernel
+pytest>=8
+httpx>=0.27

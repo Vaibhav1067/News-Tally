@@ -1,0 +1,129 @@
+{
+  "hybrid": {
+    "backend": "hybrid",
+    "n_queries": 1500,
+    "n_documents": 4137,
+    "recall@1": 0.8447,
+    "recall@5": 0.9333,
+    "recall@10": 0.9487,
+    "mrr": 0.8826,
+    "precision_at_threshold": {
+      "0.3": {
+        "top1_precision": 0.8531,
+        "coverage": 0.9847
+      },
+      "0.35": {
+        "top1_precision": 0.861,
+        "coverage": 0.9547
+      },
+      "0.4": {
+        "top1_precision": 0.8734,
+        "coverage": 0.9107
+      },
+      "0.45": {
+        "top1_precision": 0.8842,
+        "coverage": 0.852
+      },
+      "0.5": {
+        "top1_precision": 0.9012,
+        "coverage": 0.7827
+      },
+      "0.55": {
+        "top1_precision": 0.9248,
+        "coverage": 0.6653
+      },
+      "0.6": {
+        "top1_precision": 0.9503,
+        "coverage": 0.55
+      },
+      "0.65": {
+        "top1_precision": 0.9793,
+        "coverage": 0.4187
+      },
+      "0.7": {
+        "top1_precision": 0.9913,
+        "coverage": 0.3053
+      },
+      "0.8": {
+        "top1_precision": 0.9935,
+        "coverage": 0.1027
+      }
+    },
+    "by_language": {
+      "en": {
+        "n": 1063,
+        "recall@1": 0.8551,
+        "recall@5": 0.9417
+      },
+      "kn": {
+        "n": 437,
+        "recall@1": 0.8192,
+        "recall@5": 0.913
+      }
+    }
+  },
+  "tfidf_char": {
+    "backend": "tfidf_char",
+    "n_queries": 1500,
+    "n_documents": 4137,
+    "recall@1": 0.8193,
+    "recall@5": 0.9213,
+    "recall@10": 0.9433,
+    "mrr": 0.8638,
+    "precision_at_threshold": {
+      "0.3": {
+        "top1_precision": 0.8303,
+        "coverage": 0.978
+      },
+      "0.35": {
+        "top1_precision": 0.852,
+        "coverage": 0.9233
+      },
+      "0.4": {
+        "top1_precision": 0.8917,
+        "coverage": 0.8307
+      },
+      "0.45": {
+        "top1_precision": 0.916,
+        "coverage": 0.7147
+      },
+      "0.5": {
+        "top1_precision": 0.9481,
+        "coverage": 0.604
+      },
+      "0.55": {
+        "top1_precision": 0.9622,
+        "coverage": 0.4933
+      },
+      "0.6": {
+        "top1_precision": 0.9795,
+        "coverage": 0.39
+      },
+      "0.65": {
+        "top1_precision": 0.9842,
+        "coverage": 0.2947
+      },
+      "0.7": {
+        "top1_precision": 0.9868,
+        "coverage": 0.2027
+      },
+      "0.8": {
+        "top1_precision": 1.0,
+        "coverage": 0.0693
+      }
+    },
+    "by_language": {
+      "en": {
+        "n": 1063,
+        "recall@1": 0.8194,
+        "recall@5": 0.9247
+      },
+      "kn": {
+        "n": 437,
+        "recall@1": 0.8192,
+        "recall@5": 0.913
+      }
+    }
+  },
+  "note": "Queries = Factly 'Claim:' texts (en, kn); no Hindi queries exist, so cross-lingual and Hindi retrieval quality is NOT measured here."
+}

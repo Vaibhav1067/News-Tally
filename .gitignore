@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Node
+node_modules/
+frontend/dist/
+
+# Environment
+.env
+.env.local
+
+# Data: the DB and logs are reproducible from the pipeline
+# data/raw/*.jsonl is kept: short extracts only, needed to rebuild from a fresh clone
+data/*.db
+data/metadata/run_*.log
+data/metadata/invalid_rows.csv
+
+# Large model artifacts (re-create with the training scripts)
+ml/artifacts/transformer/checkpoint/
+ml/artifacts/retrieval/dense_embeddings.npy
+ml/artifacts/*.log
+
+# Tooling
+.taste-skill/
+.DS_Store
+Thumbs.db
+
+# Local editor/launch config
+.claude/

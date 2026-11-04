@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+/* Tokens: "Data terminal" app style, ground tinted a step towards navy per the NEWS TALLY brief.
+   Colour lives on data and risk only; the accent is a 1px selection line or the one primary action. */
+@theme {
+  --font-sans: "Public Sans", Inter, system-ui, sans-serif;
+
+  --color-ground: #13151a;
+  --color-surface: #0f1115;
+  --color-raised: #1c1f26;
+  --color-border: #242831;
+  --color-rule: #1d2027;
+  --color-control: #3a3f4a;
+  --color-ink: #f4f4f2;
+  --color-muted: #8f939b;
+  --color-accent: #4a8ad6;
+  --color-accent-ink: #8ab6ec;
+  --color-positive: #44a282;
+  --color-negative: #e5566f;
+  --color-warning: #d9a441;
+
+  --color-pos-bg: #19272a;
+  --color-pos-ink: #5fc39c;
+  --color-neg-bg: #2c1a21;
+  --color-neg-ink: #ef7186;
+  --color-warn-bg: #2a2418;
+  --color-warn-ink: #e0b25a;
+  --color-neu-bg: #1f222a;
+  --color-neu-ink: #c1c3c8;
+
+  --radius-card: 6px;
+}
+
+:root {
+  color-scheme: dark;
+  background: var(--color-ground);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+body { margin: 0; min-height: 100vh; }
+.tnum { font-variant-numeric: tabular-nums; }
+::selection { background: #2b4a70; color: #fff; }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; border-radius: 3px; }
+
+/* the style's one move: selection = a 1px accent line exactly as wide as its label */
+.sel-line { position: relative; }
+.sel-line[data-active="true"]::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: var(--color-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

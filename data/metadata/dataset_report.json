@@ -1,0 +1,115 @@
+{
+  "built_at": "2026-11-04T05:25:10+00:00",
+  "raw_rows": 4138,
+  "raw_files": [
+    "altnews_en_20261104T050413Z.jsonl",
+    "altnews_hi_20261104T050602Z.jsonl",
+    "factly_en_20261104T050136Z.jsonl",
+    "factly_kn_20261104T050225Z.jsonl"
+  ],
+  "missing_pct_raw": {
+    "claim_id": 0.0,
+    "claim_text": 0.0,
+    "claim_source": 0.0,
+    "fact_check_title": 0.0,
+    "fact_check_url": 0.0,
+    "verdict": 12.2,
+    "verdict_raw": 12.2,
+    "verdict_rule": 12.2,
+    "explanation": 0.0,
+    "category": 26.03,
+    "category_source": 26.03,
+    "language": 0.0,
+    "publisher": 0.0,
+    "publication_date": 0.0,
+    "collection_date": 0.0
+  },
+  "verdicts_changed_by_renormalisation": 552,
+  "invalid_rows": 0,
+  "duplicate_urls": 0,
+  "duplicate_claim_texts": 1,
+  "language_label_disagreement": 18,
+  "near_duplicate_rows": 18,
+  "near_duplicate_groups": 9,
+  "final_rows": 4137,
+  "duplicate_pct": 0.02,
+  "verdict_distribution": {
+    "FALSE": 1530,
+    "MISLEADING": 1350,
+    "OUTDATED": 749,
+    "UNPARSED": 497,
+    "TRUE": 6,
+    "INSUFFICIENT_EVIDENCE": 4,
+    "UNVERIFIED": 1
+  },
+  "language_distribution": {
+    "en": 2234,
+    "kn": 1072,
+    "hi": 831
+  },
+  "publisher_distribution": {
+    "Factly": 2571,
+    "Alt News": 1566
+  },
+  "claim_source_distribution": {
+    "claim_field": 2095,
+    "title": 2042
+  },
+  "category_source_distribution": {
+    "publisher_tag": 1808,
+    "keyword_inferred": 1252,
+    "none": 1077
+  },
+  "top_categories": {
+    "Politics": 1664,
+    "Uncategorised": 1077,
+    "Religion & Communal": 459,
+    "Elections": 255,
+    "Deepfake": 219,
+    "Defence & Security": 189,
+    "Media analysis": 80,
+    "Finance": 69,
+    "Health": 62,
+    "News": 17,
+    "International politics": 13,
+    "Society": 10,
+    "तकनीकी": 9,
+    "खेल": 5,
+    "अंतर्राष्ट्रीय पॉलिटिक्स": 4
+  },
+  "date_range": [
+    "2019-10-24",
+    "2026-11-03"
+  ],
+  "claim_length_words": {
+    "count": 4137.0,
+    "mean": 15.9,
+    "std": 5.0,
+    "min": 3.0,
+    "25%": 13.0,
+    "50%": 15.0,
+    "75%": 18.0,
+    "max": 55.0
+  },
+  "missing_pct_processed": {
+    "claim_id": 0.0,
+    "claim_text": 0.0,
+    "claim_source": 0.0,
+    "fact_check_title": 0.0,
+    "fact_check_url": 0.0,
+    "verdict": 12.01,
+    "verdict_raw": 12.01,
+    "verdict_rule": 12.01,
+    "explanation": 0.0,
+    "category": 26.03,
+    "category_source": 26.03,
+    "language": 0.0,
+    "publisher": 0.0,
+    "publication_date": 0.0,
+    "collection_date": 0.0,
+    "detected_language": 0.0,
+    "group_id": 0.0,
+    "claim_length_chars": 0.0,
+    "claim_length_words": 0.0
+  }
+}

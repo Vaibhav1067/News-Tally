@@ -1,0 +1,10 @@
+**/node_modules
+frontend
+notebooks
+.taste-skill
+.git
+data/raw
+data/*.db
+ml/artifacts/transformer
+**/__pycache__
+.env
