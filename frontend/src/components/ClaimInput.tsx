@@ -12,8 +12,8 @@ export const EXAMPLES = [
   { label: 'Unchecked claim', text: 'Vegetable prices in Bengaluru have doubled since last year according to local traders' },
 ]
 
-export function ClaimInput({ onSubmit, busy, initial, compact = false }: {
-  onSubmit: (input: AnalyzeInput) => void; busy?: boolean; initial?: AnalyzeInput; compact?: boolean
+export function ClaimInput({ onSubmit, busy, initial, compact = false, rows }: {
+  onSubmit: (input: AnalyzeInput) => void; busy?: boolean; initial?: AnalyzeInput; compact?: boolean; rows?: number
 }) {
   const [mode, setMode] = useState<Mode>(initial?.url && !initial?.text ? 'url' : 'text')
   const [text, setText] = useState(initial?.text ?? '')
@@ -34,7 +34,7 @@ export function ClaimInput({ onSubmit, busy, initial, compact = false }: {
   }
 
   return (
-    <form data-ui onSubmit={submit} className="rounded-[6px] border border-border bg-surface" aria-label="Analyze a claim">
+    <form data-ui onSubmit={submit} className="rounded-card border border-border bg-surface" aria-label="Check a claim">
       <div className="px-5 pt-4">
         <Tabs label="Input type" value={mode} onChange={(m) => { setMode(m); setError(null) }}
           options={[{ value: 'text', label: 'Paste text' }, { value: 'url', label: 'Article URL' }]} />
@@ -44,7 +44,7 @@ export function ClaimInput({ onSubmit, busy, initial, compact = false }: {
           <>
             <label htmlFor="claim" className="sr-only">Claim text</label>
             <textarea id="claim" value={text} onChange={(e) => setText(e.target.value)} maxLength={10000}
-              rows={compact ? 3 : 5} placeholder="Paste a claim, a WhatsApp forward or a post — English, Hindi, Kannada or mixed"
+              rows={rows ?? (compact ? 3 : 5)} placeholder="Paste a claim, a WhatsApp forward or a post — English, Hindi, Kannada or mixed"
               className="w-full resize-y bg-transparent text-[16px] leading-relaxed text-ink outline-none placeholder:text-muted" />
             <div className="tnum flex justify-end text-[13px] text-muted">{text.length.toLocaleString('en-IN')} / 10,000</div>
           </>
@@ -62,7 +62,7 @@ export function ClaimInput({ onSubmit, busy, initial, compact = false }: {
         <label className="flex items-center gap-2 text-[13px] text-muted">
           Language
           <select value={language} onChange={(e) => setLanguage(e.target.value)}
-            className="h-[30px] rounded-full border border-control bg-ground px-3 text-[13px] text-ink">
+            className="h-[30px] rounded-ctl border border-control bg-surface px-3 text-[13px] text-ink">
             <option value="">Detect automatically</option>
             <option value="en">English</option>
             <option value="hi">Hindi</option>
@@ -70,12 +70,12 @@ export function ClaimInput({ onSubmit, busy, initial, compact = false }: {
           </select>
         </label>
         <label className="flex cursor-pointer items-center gap-2 text-[13px] text-muted" title="Off by default. Saved text is deleted after the retention period.">
-          <input type="checkbox" checked={save} onChange={(e) => setSave(e.target.checked)} className="size-4 accent-[#4a8ad6]" />
+          <input type="checkbox" checked={save} onChange={(e) => setSave(e.target.checked)} className="size-4 accent-[#111111]" />
           Save to history
         </label>
         <button type="submit" disabled={busy}
-          className="ml-auto inline-flex h-[38px] items-center gap-2 rounded-full bg-[#2f6db5] px-5 text-[14px] font-semibold text-white transition hover:bg-[#3b7cc6] active:scale-[0.98] disabled:opacity-60">
-          {busy ? 'Analysing…' : 'Analyze claim'} <ArrowRight className="size-4" aria-hidden />
+          className="ml-auto inline-flex h-[38px] items-center gap-2 rounded-ctl bg-ink px-4 text-[14px] font-medium text-white transition hover:bg-[#333333] active:scale-[0.98] disabled:opacity-60">
+          {busy ? 'Checking…' : 'Check claim'} <ArrowRight className="size-4" aria-hidden />
         </button>
       </div>
     </form>

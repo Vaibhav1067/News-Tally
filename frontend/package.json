@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@svg-maps/india": "^2.0.0",
     "framer-motion": "^14.9.0",
     "lucide-react": "^1.67.0",
     "react": "^19.3.1",

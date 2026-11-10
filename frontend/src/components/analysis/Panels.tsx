@@ -21,7 +21,7 @@ export function ClassifierPanel({ p }: { p: Prediction }) {
           </div>
         ))}
       </dl>
-      {!p.in_domain && <p className="mt-4 rounded-[6px] bg-warn-bg px-3 py-2 text-[12px] text-warn-ink">Not applied to the assessment: the text is too short or in a language the model was not trained on.</p>}
+      {!p.in_domain && <p className="mt-4 rounded-card bg-warn-bg px-3 py-2 text-[12px] text-warn-ink">Not applied to the assessment: the text is too short or in a language the model was not trained on.</p>}
       <p className="mt-4 text-[12px] leading-relaxed text-muted">{p.note}</p>
       <p className="mt-2 text-[12px] text-muted">Model: {p.model_name?.replace(/_/g, ' ')} · TF-IDF word + character n-grams</p>
     </div>
@@ -37,12 +37,12 @@ export function ExplanationPanel({ e }: { e: Explanation }) {
   return (
     <div>
       <p className="text-[13px] text-muted">Words that pushed the model towards <span className="font-semibold text-ink">{verdictLabel(e.target_class)}</span> are shaded blue; words that pushed away are underlined grey.</p>
-      <p className="mt-3 rounded-[6px] bg-ground p-4 text-[15px] leading-[1.9]" lang="und">
+      <p className="mt-3 rounded-card bg-ground p-4 text-[15px] leading-[1.9]" lang="und">
         {e.token_highlights.slice(0, 160).map((t, i) => {
           const a = Math.abs(t.score) / max
           return (
             <span key={i} title={t.score ? `SHAP ${t.score.toFixed(3)}` : undefined}
-              style={t.score > 0 ? { backgroundColor: `rgba(74,138,214,${0.12 + a * 0.5})` } : undefined}
+              style={t.score > 0 ? { backgroundColor: `rgba(29,95,191,${0.12 + a * 0.5})` } : undefined}
               className={`rounded-[3px] px-[2px] ${t.score < 0 ? 'underline decoration-muted decoration-2 underline-offset-4' : ''}`}>
               {t.token}{' '}
             </span>
@@ -152,7 +152,7 @@ export function FeedbackBar({ r }: { r: AnalyzeResponse }) {
     <div className="flex flex-wrap items-center gap-2 text-[13px]">
       <span className="mr-1 text-muted">Was this useful?</span>
       {[['helpful', 'Helpful'], ['not_helpful', 'Not helpful'], ['wrong_match', 'Wrong match'], ['wrong_assessment', 'Wrong assessment']].map(([k, l]) => (
-        <button key={k} onClick={() => send(k)} className="h-[30px] rounded-full border border-control px-3 text-ink transition hover:border-muted active:scale-[0.97]">{l}</button>
+        <button key={k} onClick={() => send(k)} className="h-[30px] rounded-ctl border border-control px-3 text-ink transition hover:border-muted active:scale-[0.97]">{l}</button>
       ))}
       {err && <span className="text-neg-ink">{err}</span>}
     </div>

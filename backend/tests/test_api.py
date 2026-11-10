@@ -154,3 +154,17 @@ def test_rate_limit():
     c = TestClient(app)
     codes = [c.post("/api/analyze").status_code for _ in range(3)]
     assert codes == [200, 200, 429]
+
+
+def test_map_states_and_gazetteer(client):
+    from app.services.geo_service import MAP_REGIONS, STATES, states_in
+    body = client.get("/api/map").json()
+    assert len(body["states"]) == len(STATES) == 36
+    assert set(MAP_REGIONS.values()) | {"la"} == set(STATES)
+    ranks = sorted(s["rate_rank"] for s in body["states"])
+    assert ranks == list(range(1, 37))
+    assert sum(s["total_crimes"] for s in body["states"]) == body["crime_source"]["national_total"]
+    assert states_in("Old video from Lucknow shared as Kolkata violence") == ["up", "wb"]
+    assert states_in("दिल्ली पुलिस ने प्रदर्शनकारियों को रोका") == ["dl"]
+    assert states_in("Farmers at the Delhi Chalo march in Punjab") == ["pb"]
+    assert states_in("Goat prices rise; Indiana governor speaks") == []

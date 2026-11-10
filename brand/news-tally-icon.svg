@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><title>News Tally</title>
+<rect width="256" height="256" rx="52" fill="#111111"/>
+<g fill="#ffffff"><rect x="88" y="58" width="24" height="140"/><rect x="132" y="58" width="24" height="140"/><rect x="176" y="58" width="24" height="140"/></g>
+<path d="M36 148 L82 190 L226 86" fill="none" stroke="#ef4136" stroke-width="26"/></svg>

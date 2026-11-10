@@ -17,6 +17,7 @@ from app.schemas import (AnalyzeRequest, AnalyzeResponse, FactCheckOut, FactChec
                          HistoryItem)
 from app.services import ml_registry, pipeline
 from app.services.extraction import ExtractionError
+from app.services.geo_service import india_map
 from app.services.stats_service import statistics
 from ml.config import ARTIFACTS_DIR
 
@@ -43,6 +44,12 @@ def analyze(req: AnalyzeRequest, db: Session = Depends(get_db)) -> dict:
 @router.get("/statistics", tags=["dataset"])
 def get_statistics(db: Session = Depends(get_db)) -> dict:
     return statistics(db)
+
+
+@router.get("/map", tags=["dataset"])
+def get_map(db: Session = Depends(get_db)) -> dict:
+    """NCRB 2023 crime rate per state, joined with the fact-checks in this dataset that name the state."""
+    return india_map(db)
 
 
 @router.get("/fact-checks", response_model=FactCheckPage, tags=["dataset"])

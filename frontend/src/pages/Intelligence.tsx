@@ -39,12 +39,12 @@ function Timeline({ s }: { s: Statistics }) {
       <div className="h-[230px]">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data} margin={{ top: 8, right: 4, left: -18, bottom: 0 }}>
-            <CartesianGrid vertical={false} stroke="#242831" strokeDasharray="3 3" />
-            <XAxis dataKey="month" tick={{ fill: '#8f939b', fontSize: 11 }} tickLine={false} axisLine={false} interval="preserveStartEnd" minTickGap={24} />
-            <YAxis tick={{ fill: '#8f939b', fontSize: 11 }} tickLine={false} axisLine={false} allowDecimals={false} />
-            <Tooltip cursor={{ fill: '#1c1f26' }} contentStyle={{ background: '#1c1f26', border: '1px solid #3a3f4a', borderRadius: 6, fontSize: 12 }}
-              labelStyle={{ color: '#f4f4f2' }} itemStyle={{ color: '#8ab6ec' }} formatter={(v) => [v, 'fact-checks']} />
-            <RBar dataKey="count" fill="#4a8ad6" radius={[2, 2, 0, 0]} maxBarSize={22} />
+            <CartesianGrid vertical={false} stroke="#e5e5e0" />
+            <XAxis dataKey="month" tick={{ fill: '#5f5f5a', fontSize: 12 }} tickLine={false} axisLine={false} interval="preserveStartEnd" minTickGap={24} />
+            <YAxis tick={{ fill: '#5f5f5a', fontSize: 12 }} tickLine={false} axisLine={false} allowDecimals={false} />
+            <Tooltip cursor={{ fill: '#ecece8' }} contentStyle={{ background: '#ffffff', border: '1px solid #c9c9c3', borderRadius: 6, fontSize: 12 }}
+              labelStyle={{ color: '#111111' }} itemStyle={{ color: '#111111' }} formatter={(v) => [v, 'fact-checks']} />
+            <RBar dataKey="count" fill="#1d5fbf" maxBarSize={22} />
           </BarChart>
         </ResponsiveContainer>
       </div>
@@ -69,17 +69,17 @@ export default function Intelligence() {
   }, [s])
 
   return (
-    <div className="mx-auto max-w-[1320px] px-5 pt-8 md:px-8">
-      <h1 className="text-[26px] font-bold tracking-[-0.015em]">Dataset intelligence</h1>
+    <div className="mx-auto max-w-[1160px] px-5 pt-8 md:px-8">
+      <h1 className="font-serif text-[26px] font-semibold tracking-[-0.015em]">Dataset</h1>
       <p className="mt-1 text-[14px] text-muted">Live statistics of the collected fact-check dataset{s?.date_range[0] ? `, ${s.date_range[0]} to ${s.date_range[1]}` : ''}.</p>
 
       {error && <div className="mt-6"><ErrorNote message={error} onRetry={reload} /></div>}
       {loading && <Spinner label="Computing statistics" />}
       {s && (
         <>
-          <p className="mt-4 max-w-[90ch] rounded-[6px] bg-warn-bg px-4 py-3 text-[13px] leading-relaxed text-warn-ink">{s.note}</p>
+          <p className="mt-4 max-w-[90ch] rounded-card border border-[#f0dc9a] bg-warn-bg px-4 py-3 text-[13px] leading-relaxed text-warn-ink">{s.note}</p>
 
-          <dl className="mt-6 grid grid-cols-2 divide-rule rounded-[6px] border border-border bg-surface md:grid-cols-5 md:divide-x">
+          <dl className="mt-6 grid grid-cols-2 divide-rule rounded-card border border-border bg-surface md:grid-cols-5 md:divide-x">
             {[
               ['Fact-checks', nf.format(s.total_fact_checks)],
               ['Languages', String(Object.keys(s.language_distribution).length)],
@@ -92,7 +92,7 @@ export default function Intelligence() {
           </dl>
           <p className="mt-3 text-[13px] text-ink">{finding}</p>
 
-          <div className="mt-6 grid gap-6 lg:grid-cols-[43fr_57fr]">
+          <div className="mt-6 grid items-start gap-6 lg:grid-cols-[43fr_57fr]">
             <Panel title="Verdict distribution" aside="normalised from publisher wording">
               <RankedList data={Object.fromEntries(VERDICT_ORDER.filter((k) => s.verdict_distribution[k]).map((k) => [k, s.verdict_distribution[k]]))}
                 render={verdictLabel} toneOf={(k) => TONE_FILL[verdictTone(k)]} />
@@ -101,14 +101,16 @@ export default function Intelligence() {
             <Panel title="Publication timeline"><Timeline s={s} /></Panel>
           </div>
 
-          <div className="mt-6 grid gap-6 lg:grid-cols-3">
-            <Panel title="Languages"><RankedList data={s.language_distribution} render={langName} /></Panel>
-            <Panel title="Sources"><RankedList data={s.source_distribution} /></Panel>
+          <div className="mt-6 grid items-start gap-6 lg:grid-cols-[43fr_57fr]">
+            <div className="space-y-6">
+              <Panel title="Languages"><RankedList data={s.language_distribution} render={langName} /></Panel>
+              <Panel title="Sources"><RankedList data={s.source_distribution} /></Panel>
+            </div>
             <Panel title="Top categories" aside="publisher tags + keyword inference"><RankedList data={s.category_distribution} /></Panel>
           </div>
 
-          <h2 className="mt-10 text-[20px] text-muted">Verdicts by language</h2>
-          <div className="mt-3 overflow-x-auto rounded-[6px] border border-border bg-surface">
+          <h2 className="mt-10 font-serif text-[22px] font-semibold tracking-[-0.01em]">Verdicts by language</h2>
+          <div className="mt-3 overflow-x-auto rounded-card border border-border bg-surface">
             <table className="w-full min-w-[640px] text-[13px]">
               <thead><tr className="text-[12px] text-muted"><th className="px-5 py-3 text-left font-normal">Language</th>
                 {VERDICT_ORDER.map((v) => <th key={v} className="px-3 py-3 text-right font-normal">{verdictLabel(v)}</th>)}
@@ -128,7 +130,7 @@ export default function Intelligence() {
             </table>
           </div>
 
-          <h2 className="mt-10 text-[20px] text-muted">Data quality</h2>
+          <h2 className="mt-10 font-serif text-[22px] font-semibold tracking-[-0.01em]">Data quality</h2>
           <div className="mt-3 grid gap-6 lg:grid-cols-2">
             <Panel title="Pipeline counts" aside={s.data_quality.built_at ? `built ${s.data_quality.built_at.slice(0, 10)}` : undefined}>
               <dl className="divide-y divide-rule">

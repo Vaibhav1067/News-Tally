@@ -171,3 +171,10 @@ export interface HistoryItem {
   id: string; text_preview: string | null; submitted_url: string | null; detected_language: string | null
   predicted_class: string | null; risk_level: RiskLevel | null; risk_score: number | null; created_at: string
 }
+
+export interface MapFactCheck { id: string; title: string; verdict: string | null; source_name: string; language: string | null; original_url: string; publication_date: string | null }
+export interface MapState { code: string; name: string; total_crimes: number; crime_rate: number; rate_rank: number; mentions: number; false_mentions: number; recent: MapFactCheck[] }
+export interface IndiaMapData {
+  crime_source: { name: string; measure: string; url: string; table_url: string; national_rate: number; national_total: number }
+  map_regions: Record<string, string>; states: MapState[]; fact_checks_total: number; fact_checks_located: number
+}

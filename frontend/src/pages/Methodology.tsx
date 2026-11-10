@@ -14,7 +14,7 @@ const SECTIONS = [
 function Section({ id, title, children }: { id: string; title: string; children: ReactNode }) {
   return (
     <section id={id} className="scroll-mt-20 border-t border-border pt-8 pb-4">
-      <h2 className="text-[22px] font-semibold tracking-[-0.01em]">{title}</h2>
+      <h2 className="font-serif text-[22px] font-semibold tracking-[-0.01em]">{title}</h2>
       <div className="mt-4 max-w-[75ch] space-y-3 text-[15px] leading-[1.65] text-ink [&_li]:ml-5 [&_li]:list-disc [&_li]:pl-1 [&_ul]:space-y-1.5">{children}</div>
     </section>
   )
@@ -23,7 +23,7 @@ function Section({ id, title, children }: { id: string; title: string; children:
 function ComparisonTable({ m }: { m: ModelsInfo }) {
   const rows = Object.entries(m.comparison)
   return (
-    <div className="not-prose my-4 overflow-x-auto rounded-[6px] border border-border bg-surface">
+    <div className="not-prose my-4 overflow-x-auto rounded-card border border-border bg-surface">
       <table className="w-full min-w-[620px] text-[13px]">
         <caption className="sr-only">Model comparison</caption>
         <thead><tr className="text-[12px] text-muted"><th className="px-4 py-3 text-left font-normal">Model</th><th className="px-3 py-3 text-right font-normal">Val macro-F1</th><th className="px-3 py-3 text-right font-normal">Test macro-F1</th><th className="px-3 py-3 text-right font-normal">Test accuracy</th><th className="px-3 py-3 text-right font-normal">Weighted-F1</th><th className="px-4 py-3 text-right font-normal">ECE</th></tr></thead>
@@ -65,13 +65,13 @@ function Confusion({ m }: { m: ModelsInfo }) {
   if (!cm) return null
   const max = Math.max(...cm.matrix.flat())
   return (
-    <div className="my-4 inline-block rounded-[6px] border border-border bg-surface p-4">
+    <div className="my-4 inline-block rounded-card border border-border bg-surface p-4">
       <table className="tnum text-[13px]">
         <caption className="pb-2 text-left text-[12px] text-muted">Confusion matrix, test set (rows = fact-checker's verdict, columns = predicted)</caption>
         <thead><tr><th />{cm.labels.map((l) => <th key={l} className="px-3 pb-2 text-right text-[12px] font-normal text-muted">{verdictLabel(l)}</th>)}</tr></thead>
         <tbody>{cm.matrix.map((row, i) => (
           <tr key={i}><th className="pr-3 text-left text-[12px] font-normal text-muted">{verdictLabel(cm.labels[i])}</th>
-            {row.map((v, j) => <td key={j} className="px-3 py-1.5 text-right" style={{ backgroundColor: `rgba(74,138,214,${(v / max) * 0.45})` }}>{v}</td>)}</tr>
+            {row.map((v, j) => <td key={j} className="px-3 py-1.5 text-right" style={{ backgroundColor: `rgba(29,95,191,${(v / max) * 0.45})` }}>{v}</td>)}</tr>
         ))}</tbody>
       </table>
     </div>
@@ -86,14 +86,14 @@ export default function Methodology() {
   const dep = m?.deployed_test_metrics
 
   return (
-    <div className="mx-auto grid max-w-[1320px] gap-10 px-5 pt-8 md:px-8 lg:grid-cols-[220px_1fr]">
+    <div className="mx-auto grid max-w-[1160px] gap-10 px-5 pt-8 md:px-8 lg:grid-cols-[220px_1fr]">
       <nav aria-label="On this page" className="hidden lg:block">
         <div className="sticky top-20 space-y-1.5 text-[13px]">
           {SECTIONS.map(([id, t]) => <a key={id} href={`#${id}`} className="block text-muted hover:text-ink">{t}</a>)}
         </div>
       </nav>
       <article className="min-w-0">
-        <h1 className="text-[26px] font-bold tracking-[-0.015em]">Methodology</h1>
+        <h1 className="font-serif text-[26px] font-semibold tracking-[-0.015em]">Methodology</h1>
         <p className="mt-2 max-w-[75ch] text-[15px] leading-relaxed text-muted">How NEWS TALLY collects data, what its models do, how the assessment is computed, and where it fails. Every number on this page is read live from the trained artifacts.</p>
         {error && <div className="mt-4"><ErrorNote message={error} /></div>}
         {loading && <Spinner label="Loading model reports" />}
@@ -148,7 +148,7 @@ export default function Methodology() {
 
         <Section id="risk" title="Risk scoring">
           <p>Four dimensions are kept separate: evidence retrieval (E), content classification (C), source information (S) and uncertainty (evidence strength).</p>
-          <p className="rounded-[6px] bg-surface px-4 py-3 font-medium">Risk index R = 100 × (0.65·E + 0.20·C + 0.15·S)</p>
+          <p className="rounded-card bg-surface px-4 py-3 font-medium">Risk index R = 100 × (0.65·E + 0.20·C + 0.15·S)</p>
           <ul>
             <li><strong>E</strong>: each relevant match gets weight w = clip((sim − 0.40)/(1 − 0.40)) × freshness, where freshness = max(0.7, 1 − 0.1 × age in years). E = max(w) × weighted verdict risk + (1 − max(w)) × 0.5. With no relevant match E = 0.5 — unknown, not safe.</li>
             <li><strong>C</strong>: Σ p(class) × verdict risk, only when the language is supported and the text has at least four words; otherwise 0.5.</li>

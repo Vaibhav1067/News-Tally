@@ -1,5 +1,5 @@
 import type {
-  AnalyzeResponse, Facets, FactCheck, FactCheckPage, HistoryItem, ModelsInfo, Statistics,
+  AnalyzeResponse, Facets, FactCheck, FactCheckPage, HistoryItem, IndiaMapData, ModelsInfo, Statistics,
 } from '../types/api'
 
 const BASE = (import.meta.env.VITE_API_URL as string | undefined)?.replace(/\/$/, '') ?? ''
@@ -20,7 +20,7 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
       headers: { 'Content-Type': 'application/json', ...(init?.headers ?? {}) },
     })
   } catch {
-    throw new ApiError(0, 'Cannot reach the NEWS TALLY API. Is the backend running on port 8000?')
+    throw new ApiError(0, 'Cannot reach the News Tally API. Is the backend running on port 8000?')
   }
   if (!res.ok) {
     let msg = `Request failed (${res.status})`
@@ -39,6 +39,7 @@ export interface AnalyzeInput { text?: string; url?: string; language?: string; 
 export const api = {
   analyze: (body: AnalyzeInput) => request<AnalyzeResponse>('/api/analyze', { method: 'POST', body: JSON.stringify(body) }),
   statistics: () => request<Statistics>('/api/statistics'),
+  indiaMap: () => request<IndiaMapData>('/api/map'),
   factChecks: (params: Record<string, string | number | undefined>) => {
     const q = new URLSearchParams()
     Object.entries(params).forEach(([k, v]) => { if (v !== undefined && v !== '') q.set(k, String(v)) })

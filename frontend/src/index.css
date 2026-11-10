@@ -1,38 +1,40 @@
 @import "tailwindcss";
 
-/* Tokens: "Data terminal" app style, ground tinted a step towards navy per the NEWS TALLY brief.
-   Colour lives on data and risk only; the accent is a 1px selection line or the one primary action. */
+/* Tokens: "Achromatic ledger" app style on a newsprint-grey ground.
+   The chrome is ink on paper. Colour is kept for verdicts and for the one data hue (--color-accent). */
 @theme {
-  --font-sans: "Public Sans", Inter, system-ui, sans-serif;
+  --font-sans: "Geist", Inter, system-ui, sans-serif;
+  --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
 
-  --color-ground: #13151a;
-  --color-surface: #0f1115;
-  --color-raised: #1c1f26;
-  --color-border: #242831;
-  --color-rule: #1d2027;
-  --color-control: #3a3f4a;
-  --color-ink: #f4f4f2;
-  --color-muted: #8f939b;
-  --color-accent: #4a8ad6;
-  --color-accent-ink: #8ab6ec;
-  --color-positive: #44a282;
-  --color-negative: #e5566f;
-  --color-warning: #d9a441;
+  --color-ground: #f4f4f1;
+  --color-surface: #ffffff;
+  --color-raised: #ecece8;
+  --color-border: #e2e2dd;
+  --color-rule: #eeeeea;
+  --color-control: #c9c9c3;
+  --color-ink: #111111;
+  --color-muted: #5f5f5a;
+  --color-accent: #1d5fbf;
+  --color-accent-ink: #1a55ab;
+  --color-positive: #2e7d32;
+  --color-negative: #c4242a;
+  --color-warning: #b7791f;
 
-  --color-pos-bg: #19272a;
-  --color-pos-ink: #5fc39c;
-  --color-neg-bg: #2c1a21;
-  --color-neg-ink: #ef7186;
-  --color-warn-bg: #2a2418;
-  --color-warn-ink: #e0b25a;
-  --color-neu-bg: #1f222a;
-  --color-neu-ink: #c1c3c8;
+  --color-pos-bg: #dcfae5;
+  --color-pos-ink: #14532d;
+  --color-neg-bg: #ffedea;
+  --color-neg-ink: #9b1c1f;
+  --color-warn-bg: #fff6d9;
+  --color-warn-ink: #8a3c0c;
+  --color-neu-bg: #ecece8;
+  --color-neu-ink: #3d3d3a;
 
-  --radius-card: 6px;
+  --radius-card: 8px;
+  --radius-ctl: 6px;
 }
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
   background: var(--color-ground);
   color: var(--color-ink);
   font-family: var(--font-sans);
@@ -43,15 +45,25 @@
 
 body { margin: 0; min-height: 100vh; }
 .tnum { font-variant-numeric: tabular-nums; }
-::selection { background: #2b4a70; color: #fff; }
-:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; border-radius: 3px; }
+::selection { background: #cfe0f7; color: #111; }
+:focus-visible { outline: 2px solid var(--color-ink); outline-offset: 2px; border-radius: 3px; }
+code { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: 0.92em; background: var(--color-raised); padding: 1px 4px; border-radius: 3px; }
 
-/* the style's one move: selection = a 1px accent line exactly as wide as its label */
+/* selection = a 2px ink line as wide as its label, lying on the nearest edge */
 .sel-line { position: relative; }
 .sel-line[data-active="true"]::after {
-  content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: var(--color-accent);
+  content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--color-ink);
 }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
+
+/* India map. Hover is drawn by one spare path (.map-lift) and one card, both driven outside React. */
+.india-states path { cursor: pointer; outline: none; transition: fill .3s ease; }
+.india-states path:focus-visible { stroke: #111111; stroke-width: 2; }
+.map-lift { pointer-events: none; opacity: 0; transition: opacity .16s ease; stroke: #111111; stroke-width: 1.3; transform-box: fill-box; transform-origin: center; filter: drop-shadow(0 4px 5px rgba(0, 0, 0, .3)); will-change: transform, opacity; }
+.map-card { opacity: 0; transition: opacity .14s ease; will-change: transform, opacity; }
+.map-card > div { transform: scale(.97); transform-origin: top left; transition: transform .16s cubic-bezier(.2, .8, .2, 1); box-shadow: 0 10px 28px rgba(0, 0, 0, .16); }
+.map-card[data-on] { opacity: 1; }
+.map-card[data-on] > div { transform: none; }

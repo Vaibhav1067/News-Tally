@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion'
 import type { AnalyzeResponse } from '../../types/api'
 import { RISK_TITLE, langName, riskTone } from '../../utils/format'
 import { Pill } from '../ui'
@@ -14,11 +13,11 @@ export function RiskSummary({ r, embedded = false }: { r: AnalyzeResponse; embed
   const tone = riskTone(ra.level)
   const lang = r.detected_language
   return (
-    <section data-ui={embedded || undefined} aria-labelledby="risk-h" className="rounded-[6px] border border-border bg-surface p-5 md:p-6">
+    <section data-ui={embedded || undefined} aria-labelledby="risk-h" className="rounded-card border border-border bg-surface p-5 md:p-6">
       <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
         <div>
           <p className="text-[13px] text-muted">Assessment</p>
-          <Title id="risk-h" className={`mt-1 text-[28px] leading-tight font-semibold tracking-[-0.015em] ${LEVEL_INK[tone]}`}>
+          <Title id="risk-h" className={`mt-1 font-serif text-[28px] leading-tight font-semibold tracking-[-0.015em] ${LEVEL_INK[tone]}`}>
             {RISK_TITLE[ra.level]}
           </Title>
           <p className="mt-3 max-w-[60ch] text-[15px] leading-relaxed text-ink">{ra.summary}</p>
@@ -37,8 +36,7 @@ export function RiskSummary({ r, embedded = false }: { r: AnalyzeResponse; embed
               <span className="text-[13px] text-muted">of 100 · heuristic, not a probability</span>
             </dd>
             <div className="relative mt-3 h-1.5 rounded-full bg-raised" role="img" aria-label={`Risk index ${ra.risk_score.toFixed(0)} of 100`}>
-              <motion.div className={`h-1.5 rounded-full ${SCALE_FILL[tone]}`} initial={{ width: 0 }}
-                animate={{ width: `${ra.risk_score}%` }} transition={{ duration: 0.7, ease: [0.2, 0.7, 0.2, 1] }} />
+              <div className={`h-1.5 rounded-full ${SCALE_FILL[tone]}`} style={{ width: `${ra.risk_score}%` }} />
               <span className="absolute top-[-3px] h-3 w-px bg-muted" style={{ left: '50%' }} title="50 = no evidence either way" />
             </div>
             <div className="tnum mt-1 flex justify-between text-[13px] text-muted"><span>0</span><span>50 neutral</span><span>100</span></div>
@@ -57,7 +55,7 @@ export function RiskSummary({ r, embedded = false }: { r: AnalyzeResponse; embed
         <div>
           <Sub className="text-[13px] font-semibold">Why this assessment</Sub>
           <ul className="mt-2 space-y-2 text-[13px] leading-relaxed text-ink">
-            {ra.reasons.map((x) => <li key={x} className="flex gap-2"><span className="mt-2 size-1 shrink-0 rounded-full bg-accent" />{x}</li>)}
+            {ra.reasons.map((x) => <li key={x} className="flex gap-2"><span className="mt-2 size-1 shrink-0 rounded-full bg-ink" />{x}</li>)}
           </ul>
         </div>
         <div>

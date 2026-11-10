@@ -21,12 +21,12 @@ export function MatchList({ matches, backend }: { matches: FactCheckMatch[]; bac
               <span className="text-[12px] text-muted">{m.source_name} · {langName(m.language)} · {fmtDate(m.publication_date)} ({ageText(m.age_days)})</span>
             </div>
             <a href={m.original_url} target="_blank" rel="noreferrer"
-              className="group mt-2 flex items-start gap-1.5 text-[15px] leading-snug font-medium text-ink hover:text-accent-ink">
+              className="group mt-2 flex items-start gap-1.5 font-serif text-[16px] leading-snug font-semibold text-ink hover:underline">
               <span>{i + 1}. {m.title ?? m.claim_text}</span>
               <ExternalLink className="mt-1 size-3.5 shrink-0 text-muted group-hover:text-accent-ink" aria-label="opens original fact-check" />
             </a>
             {m.claim_text && m.claim_text !== m.title && <p className="mt-1 text-[13px] text-muted">Claim as circulated: {m.claim_text}</p>}
-            {m.explanation && <p className="mt-1 text-[13px] leading-relaxed text-ink/85">{m.explanation}</p>}
+            {m.explanation && <p className="mt-1 text-[13px] leading-relaxed text-ink">{m.explanation}</p>}
           </div>
           <div className="tnum flex items-center gap-3 sm:block sm:text-right">
             <div className="text-[18px] font-semibold">{m.similarity.toFixed(2)}</div>

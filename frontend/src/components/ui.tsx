@@ -11,7 +11,7 @@ const TONE: Record<Tone, string> = {
 
 export function Pill({ tone = 'neu', children, title }: { tone?: Tone; children: ReactNode; title?: string }) {
   return (
-    <span title={title} className={`inline-flex h-[22px] shrink-0 items-center rounded-full px-2.5 text-[12px] font-medium whitespace-nowrap ${TONE[tone]}`}>
+    <span title={title} className={`inline-flex h-[22px] shrink-0 items-center rounded-[4px] px-2 text-[12px] font-medium whitespace-nowrap ${TONE[tone]}`}>
       {children}
     </span>
   )
@@ -21,10 +21,10 @@ export function Panel({ title, aside, children, className = '', id }: {
   title?: ReactNode; aside?: ReactNode; children: ReactNode; className?: string; id?: string
 }) {
   return (
-    <section id={id} className={`rounded-[6px] border border-border bg-surface ${className}`}>
+    <section id={id} className={`rounded-card border border-border bg-surface ${className}`}>
       {title && (
         <header className="flex items-baseline justify-between gap-4 px-5 pt-4 pb-3">
-          <h2 className="text-[15px] font-semibold text-ink">{title}</h2>
+          <h2 className="text-[16px] font-semibold text-ink">{title}</h2>
           {aside && <div className="text-[12px] text-muted">{aside}</div>}
         </header>
       )}
@@ -61,7 +61,7 @@ export function Spinner({ label }: { label: string }) {
 
 export function ErrorNote({ message, onRetry }: { message: string; onRetry?: () => void }) {
   return (
-    <div role="alert" className="flex items-start gap-3 rounded-[6px] bg-neg-bg px-4 py-3 text-[13px] text-neg-ink">
+    <div role="alert" className="flex items-start gap-3 rounded-card bg-neg-bg px-4 py-3 text-[13px] text-neg-ink">
       <AlertTriangle className="mt-0.5 size-4 shrink-0" aria-hidden />
       <div className="flex-1">{message}</div>
       {onRetry && <button onClick={onRetry} className="underline underline-offset-2 hover:text-ink">Retry</button>}
